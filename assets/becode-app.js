@@ -24,11 +24,12 @@ function addElement(){
     currentDiv.parentNode.insertBefore(newDiv, currentDiv)
 }
 //recuperer les donner des tableau HTML
+
 const tabb =[]
-const tableau1 = d3.selectAll('#table1 tr');
+const tableau1 = document.querySelectorAll('#table1 tr');
+console.log(tableau1);
 for (let index = 0; index < tableau1.length; index++) {
-    for (let i = 0; i < tableau1[i]; i++) {
-        tabb.push(tableau1[x].selectAll('td')[y].textContent)
+    for (let i = 0; i < tableau1[index].querySelectorAll('td').length; i++) {
+        tabb.push(tableau1[index].querySelectorAll('td')[i].textContent)
     }
 }
-console.log(tabb); //celui qui correspond aux dates
