@@ -238,3 +238,41 @@ createGraphCrime(0);
      }
 }
 returnGraphicTwo();
+//////////////////////////////
+////    tableau 3        ////
+////////////////////////////
+function returnGraphicTree (){
+        // Récup donnée tableau
+            const getDataFromHTMLTable = (CSSSelectorOfTheRows) => {
+                let data = [];
+                let tableRows = d3.selectAll(CSSSelectorOfTheRows); // Collect d'information sur chaque ligne
+                tableRows = [...tableRows.nodes()];
+                let tableHeaders = [];
+                let cellsOfHeaders = [...tableRows[0].cells];
+                for(let h=0; h<cellsOfHeaders.length;h++){      // Récuperation de l'entete pour les dates
+                    if(h>1){
+                        tableHeaders.push(cellsOfHeaders[h].innerHTML); // injection dans le tableau
+                    }
+                }
+            
+                for (let i = 1; i < tableRows.length; i++) {
+                    let cellsOfRow = [...tableRows[i].cells];  // cellules
+                    let countryData = [];
+                    
+                    for (let j = 1; j < cellsOfRow.length; j++) { // Iteration sur chaque cellule
+                        if(j > 1){                              // Itération suite
+                            if(cellsOfRow[j].innerText == ":"){ // Replacement des emplacements sans données par 0
+                                countryData.push(0)
+                            }else{
+                                countryData.push(parseFloat((cellsOfRow[j].innerText).replace(",",".")));
+                            }
+                            
+                        }
+                    }
+                    data[i-1] = {}; 
+                    data[i-1].dates = tableHeaders;
+                    data[i-1].country = cellsOfRow[1].innerHTML;
+                    data[i-1].data = countryData;
+                }
+                return data;
+            }
