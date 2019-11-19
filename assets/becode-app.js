@@ -276,3 +276,4 @@ function returnGraphicTree (){
                 }
                 return data;
             }
+        }
